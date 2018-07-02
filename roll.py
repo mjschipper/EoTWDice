@@ -24,42 +24,37 @@ class Die(object):
         """
         return "Die with {} sides.  Result : {}".format(self._sides, self._value)
 
-def banner():
-    """
-    Print out in console upon running script
-    """
-    print("-" * 10)
-    print("The End of the World Dice Roller")
-    print("-" * 10)
-
-def dice_cup(p, n):
+def dice_cup(p, n, s):
 
     dice_roll = {}
     dice_roll[0] = [Die(6).roll() for _ in range(int(p))]
     dice_roll[1] = [Die(6).roll() for _ in range(int(n))]
+    calc = calculate_results(dice_roll, s)
 
-    return dice_roll
+    return calc
 
-def calculate_results(roll, stat):
+def calculate_results(r, s):
     """
     - Finds first element matching on both lists for unique numbers. i.e. [4,2,3,2],[2,3,6] result: [4,2],[6]
     - Positive rolls equal to or under stat to succeed otherwise failure. i.e. if above attribute stat is 2: 1 success.
     - Left over 'len' equals stress i.e. above example is 1 stress
     """
 
-    for i in roll[0][:]:
-        if i in roll[1]:
-            roll[0].remove(i)
-            roll[1].remove(i)
+    for i in r[0][:]:
+        if i in r[1]:
+            r[0].remove(i)
+            r[1].remove(i)
 
-    return roll
+    r[2] = sum(1 for i in r[0] if i <= s)
+    r[3] = len(r[1])
+
+    return r
 
 def engine():
-    banner()
     # Asks for a number of dice and verifies that it's a number
     while True:
         try:
-            stat = int(input("Input Attribute Score?\n>"))
+            s = int(input("Input Attribute Score?\n>"))
             break
         except(TypeError, ValueError):
             print("Please enter a number\n")
@@ -79,10 +74,13 @@ def engine():
         except(TypeError, ValueError):
             print("Please enter a number\n")
 
-    roll = dice_cup(p, n)
-    print(roll)
-    results = calculate_results(roll, stat)
+    results = dice_cup(p, n, s)
     print(results)
+    if not results[2] == 0:
+        print("Success: " + str(results[2]))
+    else:
+        print("Failure!")
+    print("Stress: " + str(results[3]))
 
 def main():
     engine()
