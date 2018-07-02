@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 from random import randint
-from collections import OrderedDict
 
 class Die(object):
     """
@@ -43,19 +42,26 @@ def dice_cup(p, n):
     return dice_roll
 
 def calculate_results(roll, stat):
-    sortedrolls = OrderedDict.fromkeys(roll)
+    #    """
+    #    - Finds first element matching on both lists for unique numbers. i.e. [4,5,2,3,2],[2,3,6] result: [4,5,2],[6]
+    #    - Positive roll must be equal to or under stat to succeed otherwise failure. i.e. if above attribute stat is 2: success.
+    #    - Left over 'len' equals stress i.e. above example is 1 stress
+    #    """
 
-    return sortedrolls
 
-def print_dice(d):
-    """
-    Converts list of dice results into string and prints results and total
-    """
-    print(d)
-    pdice_str = ','.join(map(str, d[0]))
-    print("You rolled: {}\nTotal Pos: {}".format(pdice_str))
-    ndice_str = ','.join(map(str, d[1]))
-    print("You rolled: {}\nTotal Neg: {}".format(ndice_str))
+    return roll
+
+#def print_dice(d):
+#    """
+#    Converts list of dice results into string and prints results and total
+#    """
+#    print(d)
+#    pdice_str = ','.join(map(str, d[0]))
+#    print("You rolled: {}\nTotal Pos: {}".format(pdice_str))
+#    ndice_str = ','.join(map(str, d[1]))
+#    print("You rolled: {}\nTotal Neg: {}".format(ndice_str))
+
+
 
 def engine():
     banner()
@@ -86,7 +92,8 @@ def engine():
 
     roll = dice_cup(p, n)
     results = calculate_results(roll, stat)
-    print_dice(roll)
+    print(results)
+    #print_dice(roll)
 
 def main():
     engine()
