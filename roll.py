@@ -42,23 +42,13 @@ def dice_cup(p, n):
 
 def calculate_results(roll, stat):
     """
-    - Finds first element matching on both lists for unique numbers. i.e. [4,5,2,3,2],[2,3,6] result: [4,5,2],[6]
+    - Finds first element matching on both lists for unique numbers. i.e. [4,2,3,2],[2,3,6] result: [4,2],[6]
     - Positive rolls equal to or under stat to succeed otherwise failure. i.e. if above attribute stat is 2: 1 success.
     - Left over 'len' equals stress i.e. above example is 1 stress
     """
 
 
     return roll
-
-#def print_dice(d):
-#    """
-#    Converts list of dice results into string and prints results and total
-#    """
-#    print(d)
-#    pdice_str = ','.join(map(str, d[0]))
-#    print("You rolled: {}\nTotal Pos: {}".format(pdice_str))
-#    ndice_str = ','.join(map(str, d[1]))
-#    print("You rolled: {}\nTotal Neg: {}".format(ndice_str))
 
 def engine():
     banner()
@@ -88,7 +78,6 @@ def engine():
     roll = dice_cup(p, n)
     results = calculate_results(roll, stat)
     print(results)
-    #print_dice(roll)
 
 def main():
     engine()
