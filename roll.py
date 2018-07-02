@@ -4,7 +4,6 @@ from random import randint
 class Die(object):
     """
     Creates a die class for use with a dice rolling utility
-
     """
     d_sides = None
     def __init__(self, sides = 6):
@@ -42,11 +41,11 @@ def dice_cup(p, n):
     return dice_roll
 
 def calculate_results(roll, stat):
-    #    """
-    #    - Finds first element matching on both lists for unique numbers. i.e. [4,5,2,3,2],[2,3,6] result: [4,5,2],[6]
-    #    - Positive roll must be equal to or under stat to succeed otherwise failure. i.e. if above attribute stat is 2: success.
-    #    - Left over 'len' equals stress i.e. above example is 1 stress
-    #    """
+    """
+    - Finds first element matching on both lists for unique numbers. i.e. [4,5,2,3,2],[2,3,6] result: [4,5,2],[6]
+    - Positive rolls equal to or under stat to succeed otherwise failure. i.e. if above attribute stat is 2: 1 success.
+    - Left over 'len' equals stress i.e. above example is 1 stress
+    """
 
 
     return roll
@@ -61,12 +60,8 @@ def calculate_results(roll, stat):
 #    ndice_str = ','.join(map(str, d[1]))
 #    print("You rolled: {}\nTotal Neg: {}".format(ndice_str))
 
-
-
 def engine():
     banner()
-    # Asks for a number of dice and verifies that it's a number
-
     # Asks for a number of dice and verifies that it's a number
     while True:
         try:
