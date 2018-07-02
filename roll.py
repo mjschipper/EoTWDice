@@ -47,6 +47,10 @@ def calculate_results(roll, stat):
     - Left over 'len' equals stress i.e. above example is 1 stress
     """
 
+    for i in roll[0][:]:
+        if i in roll[1]:
+            roll[0].remove(i)
+            roll[1].remove(i)
 
     return roll
 
@@ -76,6 +80,7 @@ def engine():
             print("Please enter a number\n")
 
     roll = dice_cup(p, n)
+    print(roll)
     results = calculate_results(roll, stat)
     print(results)
 
