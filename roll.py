@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 from random import randint
 
+
 class Die(object):
     """
     Creates a die class for use with a dice rolling utility
     """
     d_sides = None
-    def __init__(self, sides = 6):
+
+    def __init__(self, sides=6):
         self._sides = sides
         self._value = None
         self.roll()
@@ -24,14 +26,16 @@ class Die(object):
         """
         return "Die with {} sides.  Result : {}".format(self._sides, self._value)
 
-def dice_cup(p, n, s):
 
+def dice_cup(p, n, s):
     dice_roll = {}
     dice_roll[0] = [Die(6).roll() for _ in range(int(p))]
     dice_roll[1] = [Die(6).roll() for _ in range(int(n))]
     calc = calculate_results(dice_roll, s)
+    print(dice_roll)
 
     return calc
+
 
 def calculate_results(r, s):
     """
@@ -45,10 +49,11 @@ def calculate_results(r, s):
             r[0].remove(i)
             r[1].remove(i)
 
-    r[2] = sum(1 for i in r[0] if i <= s)
-    r[3] = len(r[1])
+    r[3] = sum(1 for i in r[0] if i <= s)
+    r[4] = len(r[1])
 
     return r
+
 
 def engine():
     # Asks for a number of dice and verifies that it's a number
@@ -76,14 +81,17 @@ def engine():
 
     results = dice_cup(p, n, s)
     print(results)
-    if not results[2] == 0:
-        print("Success: " + str(results[2]))
+    #if not results[2] == 0: print("Cancelled Rolls: " + str(results[2]))
+    if not results[3] == 0:
+        print("Success: " + str(results[3]))
     else:
         print("Failure!")
-    print("Stress: " + str(results[3]))
+    print("Stress: " + str(results[4]))
+
 
 def main():
     engine()
+
 
 if __name__ == "__main__":
     main()
